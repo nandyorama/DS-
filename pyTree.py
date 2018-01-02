@@ -181,62 +181,11 @@ def KthSmallest(root,k):
                     result = cur.data
                 cur = cur.r
     return result
-    
+
+#Swap Two Numbers
 def swap(a,b):
     a ,b = b, a
 
-'''
-def swapNodeInBSTUtil1(root,prev,f,m,l):
-    if root is None:
-        return
-    swapNodeInBSTUtil1(root.l,prev,f,m,l)
-    if prev is not None and prev.data > root.data:
-        if f is None:
-            f = prev
-            m = root
-        else:
-            l = root
-    prev = root    
-    swapNodeInBSTUtil1(root.r,prev,f,m,l)
-
-def swapNodeInBSTUtil(root,args):
-    if root is None:
-        return
-    swapNodeInBSTUtil(root.l,args)
-    if args[0] is not None and args[0].data > root.data:
-        if args[1] is None:
-            args[1] = args[0]
-            args[2] = root
-        else:
-            args[3] = root
-    args[0] = root    
-    swapNodeInBSTUtil(root.r,args)
-    
-    
-def test(root,args):
-    if root is not None:
-        args[0] = root
-
-def swapNodeInBST(root):
-    prev = f = m = l = None
-    args = [prev,f,m,l]
-    #test(root,args)
-    #inorder(args[0])
-    #inorder(root)
-    
-    swapNodeInBSTUtil(root,args)
-    if args[1] is not None and args[3] is not None:
-        swap(args[1].data,args[3].data)
-    elif args[2] is not None and args[1] is not None:     
-        swap(args[1].data,args[2].data)
-
-    '''
-    #swapNodeInBSTUtil(root,prev,f,m,l)
-    #if f is not None and l is not None:
-    #    swap(f.data,l.data)
-    #elif m is not None and f is not None:     
-    #    swap(f.data,m.data)
-'''    
 
 #Find Common Acestor of Two given Values
 def LCA(root,a,b):
@@ -350,30 +299,7 @@ def labelOrderTraversal(root):
             
         if temp.r is not None:
             q.put(temp.r)
-        
-def printCornerNodeinLabel(root):
-    print("printCornerNodeinLabel")
-    if root is None:
-        return
-    q = queue.Queue()
-    q.put(root)
-    #print(dir(q))
-    while not q.empty():
-        n = q.qsize()
-        print(n)
-        temp = q.get()
-        print(temp.data,end = "===")
-        '''
-        while n:
-            n -= 1
-            if temp.l is not None:
-                q.put(temp.l)
-            
-            if temp.r is not None:
-                q.put(temp.r)
-        '''    
-        
-        
+                
         
         
 #Driver Functions call
@@ -397,7 +323,6 @@ if findPairInBST(root,14):
 else:
     print("Pair not Found.")
 labelOrderTraversal(root)  
-#printCornerNodeinLabel(root)
 '''
 root = T(5)
 root.l = T(3)
