@@ -299,6 +299,38 @@ def labelOrderTraversal(root):
             
         if temp.r is not None:
             q.put(temp.r)
+
+#Util function for Converting BST to Double Link List                
+def b2dUtil(root):
+    if root is None:
+        return root
+    ls = b2dUtil(root.left)
+    if ls is not None:
+        while ls.right is not None:
+            ls = ls.right
+            
+        ls.right = root
+        root.left = ls
+        
+    rs = b2dUtil(root.right)
+    if rs is not None:
+        while rs.left is not None:
+            rs = rs.left
+            
+        rs.left = root
+        root.right = rs
+    return root
+
+#Convert BST to Double Link List    
+def b2d(root):
+    cur = b2dUtil(root)
+    while cur.left is not None:
+        cur = cur.left
+    
+    while cur is not None:
+        print(cur.data,end="*&*")
+        cur = cur.right
+        
                 
         
         
