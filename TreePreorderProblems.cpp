@@ -49,6 +49,26 @@ void root2leaf(Tree * root)
     int result[]={0,};
     root2leafUtil(root,result,0);
 }
+void UtilPrint(Tree * root, int cur, vector<int>& sum)
+{
+    if(!root) return;
+    cur += root->data;
+    if(!root->l && !root->r)
+    {
+        sum.push_back(cur);
+    }
+    UtilPrint(root->l,cur,sum);
+    UtilPrint(root->r,cur,sum);
+}
+void printAllRoot2LeafPathSum(Tree * root)
+{
+    int cur = 0; vector<int> sum;
+    UtilPrint(root,cur,sum);
+    for(int item: sum)
+    {
+        cout<<item<<"--";
+    }
+}
 void Util(Tree * root,int cur, int *max)
 {
     if(!root) return;
@@ -75,5 +95,6 @@ int main()
     preOrder(root);
     root2leaf(root);
     maxSumFromRoot2Leaf(root);
+    printAllRoot2LeafPathSum(root);
     return 0;
 }
