@@ -168,6 +168,33 @@ void swapNodes(Node * root)
         swapValue(&(f->data),&(m->data));
     }
 }
+//Convert BST to DLL
+void bst2DLL(Node *root, Node **head)
+{
+    if(!root) return;
+    static Node * prev = NULL;
+    bst2DLL(root->l,head);
+    if(!prev)
+    {
+        *head = root;
+    }
+    else
+    {
+        root->l = prev;
+        prev->r = root;
+    }
+    prev = root;
+    bst2DLL(root->r,head);
+}
+void printDLL(Node * root)
+{
+    Node * head = root;
+    while(head)
+    {
+        cout<<head->data<<"--";
+        head = head->r;
+    }
+}
 int main()
 {
     Node * root = NULL;
@@ -195,5 +222,8 @@ int main()
     swapNodes(root1);
     cout<<"After SWAP InOrder-";in(root1);cout<<endl;
 
+    Node *head = NULL;
+    bst2DLL(root, &head);
+    printDLL(root);
     return 0;
 }
