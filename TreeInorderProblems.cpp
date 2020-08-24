@@ -195,6 +195,45 @@ void printDLL(Node * root)
         head = head->r;
     }
 }
+
+void inorderCLL(Node *root, vector<int> &v)
+{
+    if(root)
+    {
+        inorder(root->l,v);
+        v.push_back(root->data);
+        inorder(root->r,v);
+    }
+}
+//BST to CLL
+Node * bst2CLL(Node *root)
+{
+    if(!root) return NULL;
+    vector<int> v;
+    inorderCLL(root,v);
+    Node *head = NULL;
+    insert(&head,v[0]);
+    Node * cur = head;
+    for(int i=1;i<v.size();i++)
+    {
+        Node * temp;
+        insert(&temp,v[i]);
+        cur->r = temp;
+        cur = cur->r;
+    }
+    cur->r = head;
+    head->l = cur;
+    return head;
+}
+void printCLL(Node * root)
+{
+    Node * head = root;
+    do{
+        cout<<head->data<<"--";
+        head = head->r;
+    }while(head!=root);
+}
+
 int main()
 {
     Node * root = NULL;
@@ -225,5 +264,13 @@ int main()
     Node *head = NULL;
     bst2DLL(root, &head);
     printDLL(root);
+
+    Node * root2 = NULL;
+    insert(&root2,5);
+    insert(&root2->l,2);
+    insert(&root2->l->l,1);
+    insert(&root2->l->r,3);
+    Node * result = bst2CLL(root2);
+    printCLL(result);
     return 0;
 }
