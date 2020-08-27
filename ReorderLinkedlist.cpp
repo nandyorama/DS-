@@ -6,14 +6,14 @@ using lst = struct lst{
     lst *next;
 };
 
-void insertl(lst **root, int data)
+void insert(lst **root, int data)
 {
     lst * cur = new lst;
     cur->data = data;
     cur->next = *root;
     *root = cur;
 }
-void printl(lst * root)
+void print(lst * root)
 {
     while(root)
     {
@@ -37,10 +37,10 @@ lst* reverse(lst *root)
     }
     return result;
 }
-void reorder(lst * root)
+lst * reorder(lst * root)
 {
     lst *cur = root;
-    if(!cur) return;
+    if(!cur) return NULL;
     lst * sl = cur;
     lst * ft = cur;
     while(ft && ft->next)
@@ -61,18 +61,20 @@ void reorder(lst * root)
     }
     if(head)
     head->next = NULL;
-    printl(cur);
+    
+    return cur;
 }
 int main()
 {
     lst * root = NULL;
-    insertl(&root,6);
-    insertl(&root,5);
-    insertl(&root,4);
-    insertl(&root,3);
-    insertl(&root,2);
-    insertl(&root,1);
-    printl(root);
-    reorder(root);
+    insert(&root,6);
+    insert(&root,5);
+    insert(&root,4);
+    insert(&root,3);
+    insert(&root,2);
+    insert(&root,1);
+    print(root);
+    lst * result = reorder(root);
+    print(result);
     return 0;
 }
