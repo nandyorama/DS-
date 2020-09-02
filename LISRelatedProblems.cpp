@@ -2,17 +2,17 @@
 using namespace std;
 int LIS(int *a,int n)
 {
-    int res[n];
+    int result[n];
     for(int i =0;i<n;i++)
-     res[i] = 1;
+     result[i] = 1;
     
     for(int i =1 ;i<n;i++)
     {
         for(int j=0;j<i;j++)
         {
-            if(a[i]>a[j] && res[i]<res[j]+1)
+            if(a[i]>a[j] && result[i]<result[j]+1)
             {
-                res[i] = res[j]+1;
+                result[i] = res[j]+1;
             }
         }
     }
@@ -20,9 +20,9 @@ int LIS(int *a,int n)
     for(int i =0 ;i<n;i++)
     {
         //cout<<res[i]<<"--";
-        if(res[i]>max)
+        if(result[i]>max)
         {
-            max = res[i];
+            max = result[i];
         }
     }    
     //cout<<endl;
