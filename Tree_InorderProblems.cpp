@@ -196,13 +196,13 @@ void printDLL(Node * root)
     }
 }
 
-void inorderCLL(Node *root, vector<int> &v)
+void utilCLL(Node *root, vector<int> &v)
 {
     if(root)
     {
-        inorder(root->l,v);
+        utilCLL(root->l,v);
         v.push_back(root->data);
-        inorder(root->r,v);
+        utilCLL(root->r,v);
     }
 }
 //BST to CLL
@@ -210,7 +210,7 @@ Node * bst2CLL(Node *root)
 {
     if(!root) return NULL;
     vector<int> v;
-    inorderCLL(root,v);
+    utilCLL(root,v);
     Node *head = NULL;
     insert(&head,v[0]);
     Node * cur = head;
