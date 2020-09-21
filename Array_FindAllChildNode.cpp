@@ -2,6 +2,7 @@
 using namespace std;
 int numberOfParentChildPair(int *a,int n)
 {
+    if(n<0) return -1;
     int H[256]={0,};
     int count = 0;
     for(int i=0;i<n;i++)
