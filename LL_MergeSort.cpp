@@ -69,11 +69,12 @@ void print(Node * root)
     }
     cout<<endl;
 }
-Node * mergesort(Node * root)
+void mergesort(Node ** head)
 {
+    Node * root = *head;
     if(!root || !root->next)
     {
-        return root;
+        return ;
     }
     else
     {
@@ -81,11 +82,10 @@ Node * mergesort(Node * root)
         split(root,&a,&b);
         //print(a);
         //print(b);
-        mergesort(a);
-        mergesort(b);
-        root = sort2Sorted(a,b);
+        mergesort(&a);
+        mergesort(&b);
+        *head = sort2Sorted(a,b);
     }
-    return root;
 }
 int main()
 {
@@ -96,7 +96,7 @@ int main()
     insert(&root,8);
     insert(&root,1);
     print(root);
-    Node * cur = mergesort(root);
-    print(cur);
+    mergesort(&root);
+    print(root);
     return 0;
 }
