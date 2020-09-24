@@ -79,8 +79,8 @@ Node * mergesort(Node * root)
     {
         Node *a;Node *b;
         split(root,&a,&b);
-        print(a);
-        print(b);
+        //print(a);
+        //print(b);
         mergesort(a);
         mergesort(b);
         root = sort2Sorted(a,b);
