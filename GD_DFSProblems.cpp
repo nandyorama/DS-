@@ -1,7 +1,11 @@
 #include<bits/stdc++.h>
 using namespace std;
-
-void dfsUsingRecursion(int input)
+#define n 6
+void edge(vector<vector<int>> &g,int a,int b)
+{
+    g[a].push_back(b);
+}
+void dfsUsingRecursion(vector<vector<int>> g,vector<bool>& visited,int input)
 {
     visited[input] = true;
     cout<<input<<"--";
@@ -9,25 +13,29 @@ void dfsUsingRecursion(int input)
     {
         if(!visited[*i])
         {
-            dfsUsingRecursion(*i);
+            dfsUsingRecursion(g,visited,*i);
         }
     }
 }
 
 int main()
 {
+  vector<bool> visited;
+  vector<vector<int>> g;
+    
   visited.assign(n, false); 
   g.assign(n, vector<int>());
-  edge(0,1);
-  edge(0,2);
-  edge(0,3);
-  edge(0,4);
-  edge(3,5);
+  edge(g,0,1);
+  edge(g,0,2);
+  edge(g,0,3);
+  edge(g,0,4);
+  edge(g,3,5);
+  
   for(int i=0;i<n;i++)
   {
     if(!visited[i])  
     {
-        dfsUsingRecursion(i);             
+        dfsUsingRecursion(g,visited,i);             
     }
   }
   return 0;
