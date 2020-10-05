@@ -14,6 +14,7 @@ bool detectCycleUtil(vector<int> edge[N],vector<bool> visited,vector<bool> rec,i
         else if(rec[edge[i][j]])
             return true;
     }
+    rec[i] = false;
     return false;
 }
 
@@ -30,7 +31,7 @@ int detectCycle(vector<int> edge[N])
     }
     return 0;
 }
-
+ 
 int main()
 {
     vector<int> edge[N];
