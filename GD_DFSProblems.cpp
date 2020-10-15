@@ -18,6 +18,19 @@ void dfsUsingRecursion(vector<vector<int>> g,vector<bool>& visited,int input)
     }
 }
 
+void topology(vector<vector<int>> g, vector<bool>& visited, int input, list<int> &stack)
+{
+    visited[input] = true;
+    
+    for(auto i=g[input].begin();i!=g[input].end();i++)
+    {
+        if(!visited[*i])
+        {
+            topology(g,visited,*i,stack);
+        }
+    }
+    stack.push_back(input);
+}
 int main()
 {
   vector<bool> visited;
@@ -38,5 +51,21 @@ int main()
         dfsUsingRecursion(g,visited,i);             
     }
   }
+  cout<<endl;
+  fill(visited.begin(),visited.end(),false);
+  list<int> stack;
+  for(int i=0;i<N;i++)
+  {
+    if(!visited[i])  
+    {
+       topology(g,visited,i,stack);             
+    }
+  }
+  while(!stack.empty())
+  {
+      cout<<stack.back()<<"***";
+      stack.pop_back();
+  }
+  
   return 0;
 }
